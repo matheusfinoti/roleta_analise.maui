@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\m_finoti\\source\\repos\\RoletaAnalise\\RoletaAnalise.maui\\obj\\Debug\\net8.0-android\\scopedcss\\bundle\\RoletaAnalise.maui.styles.css",
+      "PackagePath": "staticwebassets\\RoletaAnalise.maui.styles.css"
+    },
+    {
+      "Id": "C:\\Users\\m_finoti\\source\\repos\\RoletaAnalise\\RoletaAnalise.maui\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\m_finoti\\source\\repos\\RoletaAnalise\\RoletaAnalise.maui\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\m_finoti\\source\\repos\\RoletaAnalise\\RoletaAnalise.maui\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\m_finoti\\source\\repos\\RoletaAnalise\\RoletaAnalise.maui\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\m_finoti\\source\\repos\\RoletaAnalise\\RoletaAnalise.maui\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-android\\staticwebassets\\msbuild.RoletaAnalise.maui.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-android\\staticwebassets\\msbuild.build.RoletaAnalise.maui.props",
+      "PackagePath": "build\\RoletaAnalise.maui.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-android\\staticwebassets\\msbuild.buildMultiTargeting.RoletaAnalise.maui.props",
+      "PackagePath": "buildMultiTargeting\\RoletaAnalise.maui.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-android\\staticwebassets\\msbuild.buildTransitive.RoletaAnalise.maui.props",
+      "PackagePath": "buildTransitive\\RoletaAnalise.maui.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

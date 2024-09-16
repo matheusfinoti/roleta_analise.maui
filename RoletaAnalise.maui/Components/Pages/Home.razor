@@ -1,0 +1,60 @@
+﻿@page "/"
+@using Newtonsoft.Json
+@using RoletaAnalise.maui.Models
+
+<div>
+    <label for="inputNumbers">Teste</label>
+    <input @bind="inputNumber" type="text" placeholder="14;8;31;22;19;16;29"/>
+    <button class="btn btn-primary" @onclick="SalvaNumeros">Adicionar</button>
+    <p>@message</p>
+    <p>@message2</p>
+    <ol>
+        @foreach (var numero in listaDeNumero)
+        {
+            <li>
+                Valor: @numero.Valor <br/>
+                Data do Input: @numero.DataDoInput.ToString("dd/MM/yyyy HH:mm:ss")
+            </li>
+        }
+    </ol>
+</div>
+
+@code {
+    private string inputNumber = string.Empty;
+    private string? message = "";
+    private string? message2 = "";
+    private List<Numero> listaDeNumero = new();
+
+    private void SalvaNumeros()
+    {
+        var novosNumeros = ConverterInputParaNumeros(inputNumber);
+        inputNumber = "";
+        listaDeNumero.AddRange(novosNumeros);
+        Eae();
+    }
+
+    private IEnumerable<Numero> ConverterInputParaNumeros(string input)
+    {
+        return input.Split(";")
+                    .Select(numStr => int.TryParse(numStr, out int valor) ? valor : (int?)null)
+                    .Select(valor => new Numero
+                    {
+                        Id = Guid.NewGuid(),
+                        Valor = valor.Value,
+                    });
+    }
+
+    private void Eae()
+    {
+        string json = JsonConvert.SerializeObject(listaDeNumero, Formatting.Indented);
+        message = json;
+
+        var caminhoDoArquivo = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "numeross.json");
+        message2 = caminhoDoArquivo;
+        File.WriteAllText(caminhoDoArquivo, json);
+        
+    }
+
+}
+
+// Está salvando em JSON. Precisa arrumar o local do arquivo. Depois preparar a leitura dele. Ver como gravar por data.
