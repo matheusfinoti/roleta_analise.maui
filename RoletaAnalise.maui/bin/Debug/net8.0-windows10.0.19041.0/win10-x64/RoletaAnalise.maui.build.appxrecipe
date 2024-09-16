@@ -226,8 +226,8 @@
     <AppxPackagedFile Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
       <PackagePath>dotnet_bot.scale-400.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\numeros.json">
-      <PackagePath>numeros.json</PackagePath>
+    <AppxPackagedFile Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\data\numeross.json">
+      <PackagePath>data\numeross.json</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\RoletaAnalise.maui.deps.json">
       <PackagePath>RoletaAnalise.maui.deps.json</PackagePath>

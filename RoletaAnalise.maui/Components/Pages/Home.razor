@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using Newtonsoft.Json
+@using RoletaAnalise.maui.Context
 @using RoletaAnalise.maui.Models
 
 <div>
@@ -8,6 +9,7 @@
     <button class="btn btn-primary" @onclick="SalvaNumeros">Adicionar</button>
     <p>@message</p>
     <p>@message2</p>
+    <p>@message3</p>
     <ol>
         @foreach (var numero in listaDeNumero)
         {
@@ -23,14 +25,24 @@
     private string inputNumber = string.Empty;
     private string? message = "";
     private string? message2 = "";
+    private string? message3 = "";
     private List<Numero> listaDeNumero = new();
+    private ManipulaJson _salvaJson = new();
 
     private void SalvaNumeros()
     {
-        var novosNumeros = ConverterInputParaNumeros(inputNumber);
-        inputNumber = "";
-        listaDeNumero.AddRange(novosNumeros);
-        Eae();
+        try
+        {
+            var novosNumeros = ConverterInputParaNumeros(inputNumber);
+            inputNumber = "";
+            listaDeNumero.AddRange(novosNumeros);
+            SalvaEmJson();
+            message = "";
+        }
+        catch (Exception ex)
+        {
+            message = $"Formato inválido: {ex.Message}. Inserir numeros sem espaços, separados por ponto e vírgula";
+        }
     }
 
     private IEnumerable<Numero> ConverterInputParaNumeros(string input)
@@ -44,17 +56,11 @@
                     });
     }
 
-    private void Eae()
+    private void SalvaEmJson()
     {
         string json = JsonConvert.SerializeObject(listaDeNumero, Formatting.Indented);
-        message = json;
 
-        var caminhoDoArquivo = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "numeross.json");
-        message2 = caminhoDoArquivo;
-        File.WriteAllText(caminhoDoArquivo, json);
-        
+        _salvaJson.AdicionaNumero(json);
     }
 
 }
-
-// Está salvando em JSON. Precisa arrumar o local do arquivo. Depois preparar a leitura dele. Ver como gravar por data.
