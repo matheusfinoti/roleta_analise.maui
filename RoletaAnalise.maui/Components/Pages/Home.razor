@@ -2,6 +2,7 @@
 @using Newtonsoft.Json
 @using RoletaAnalise.maui.Context
 @using RoletaAnalise.maui.Models
+@using System.Text.RegularExpressions
 
 <div>
     <label for="inputNumbers">Teste</label>
@@ -33,11 +34,18 @@
     {
         try
         {
-            var novosNumeros = ConverterInputParaNumeros(inputNumber);
-            inputNumber = "";
-            listaDeNumero.AddRange(novosNumeros);
-            SalvaEmJson();
-            message = "";
+            if (ConfereString(inputNumber))
+            {
+                var novosNumeros = ConverterInputParaNumeros(inputNumber);
+                inputNumber = "";
+                listaDeNumero.AddRange(novosNumeros);
+                SalvaEmJson();
+                message = "";
+            }
+            else
+            {
+                message = "Verificar números. Parece ter caracter inválido.";
+            }
         }
         catch (Exception ex)
         {
@@ -61,6 +69,18 @@
         string json = JsonConvert.SerializeObject(listaDeNumero, Formatting.Indented);
 
         _salvaJson.AdicionaNumero(json);
+    }
+
+    private bool ConfereString(string input)
+    {
+        if (Regex.IsMatch(input, @"^[0-9;]+$"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        };
     }
 
 }

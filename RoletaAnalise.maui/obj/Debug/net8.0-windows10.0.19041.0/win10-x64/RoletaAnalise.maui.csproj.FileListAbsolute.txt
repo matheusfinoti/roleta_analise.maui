@@ -206,4 +206,4 @@ C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\obj\Debug\net8.0
 C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
 C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Newtonsoft.Json.dll
 C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\RoletaAnalise.maui.sourcelink.json
-C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\data\numeross.json
+C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\data\numeros.json

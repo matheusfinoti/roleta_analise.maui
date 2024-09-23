@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-09-16T22:55:01.304</Modified>
+      <Modified>2024-09-23T22:53:07.429</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-09-16T22:53:46.252</Modified>
+      <Modified>2024-09-23T22:43:26.661</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\RoletaAnalise.maui.runtimeconfig.json">
       <PackagePath>RoletaAnalise.maui.runtimeconfig.json</PackagePath>
@@ -44,11 +44,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\RoletaAnalise.maui.dll">
       <PackagePath>RoletaAnalise.maui.dll</PackagePath>
-      <Modified>2024-09-16T22:55:01.037</Modified>
+      <Modified>2024-09-23T22:45:09.930</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>RoletaAnalise.maui.exe</PackagePath>
-      <Modified>2024-09-16T22:55:01.037</Modified>
+      <Modified>2024-09-23T22:45:09.945</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -302,9 +302,9 @@
       <PackagePath>dotnet_bot.scale-400.png</PackagePath>
       <Modified>2024-09-07T00:53:54.034</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\data\numeross.json">
-      <PackagePath>data\numeross.json</PackagePath>
-      <Modified>2024-09-16T22:54:40.719</Modified>
+    <AppxPackagedFile Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\data\numeros.json">
+      <PackagePath>data\numeros.json</PackagePath>
+      <Modified>2024-09-23T22:43:33.302</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m_finoti\source\repos\RoletaAnalise\RoletaAnalise.maui\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\RoletaAnalise.maui.deps.json">
       <PackagePath>RoletaAnalise.maui.deps.json</PackagePath>

@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RoletaAnalise.maui")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+d64876335d40a278b903915a10606c3c870e1764")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+0a1afa2b885d6d4bfdee1250bccafa15525c7d92")]
 [assembly: System.Reflection.AssemblyProductAttribute("RoletaAnalise.maui")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RoletaAnalise.maui")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
