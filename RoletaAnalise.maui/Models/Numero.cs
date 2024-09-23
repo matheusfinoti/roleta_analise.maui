@@ -16,4 +16,9 @@ internal class Numero
     {
         DataDoInput = DateTime.Now;
     }
+
+    public override string ToString()
+    {
+        return Valor.ToString();
+    }
 }

@@ -1,4 +1,4 @@
 .vs/
-.RoletaAnalise.maui/data/
-.RoletaAnalise.maui/bin/
-.RoletaAnalise.maui/obj/
+RoletaAnalise.maui/data/numeros.json
+RoletaAnalise.maui/obj/Debug/*
+RoletaAnalise.maui/bin/Debug/
