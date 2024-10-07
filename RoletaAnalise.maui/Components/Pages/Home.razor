@@ -41,6 +41,7 @@
                 listaDeNumero.AddRange(novosNumeros);
                 SalvaEmJson();
                 message = $"Números adicionados: {string.Join(", ", listaDeNumero)}";
+                message = AppContext.BaseDirectory;
             }
             else
             {

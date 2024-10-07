@@ -11,7 +11,7 @@ namespace RoletaAnalise.maui.Context
 {
     internal class ManipulaJson
     {
-        public string _filePath { get; set; }
+        private string _filePath { get; set; }
 
 
         public ManipulaJson()
