@@ -21,7 +21,7 @@ namespace RoletaAnalise.maui.Context
 
         private string BuscaCaminho()
         {
-            var caminhoRaizProjeto = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\..\"));
+            var caminhoRaizProjeto = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory));
             return Path.Combine(caminhoRaizProjeto, "data", "numeros.json");
         }
 
