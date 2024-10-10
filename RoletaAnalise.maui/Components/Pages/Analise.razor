@@ -1,0 +1,17 @@
+﻿@page "/analise"
+
+<h3>Analise</h3>
+
+<select class="form-select" aria-label="Default select example" style="max-width: 500px">
+    <option selected>Selecione o número</option>
+    @foreach (var numero in numeros)
+    {
+        <option value="@numero">@numero</option>
+    }
+</select>
+
+@code {
+    private int[] numeros = Enumerable.Range(0, 37).ToArray();
+
+    
+}

@@ -4,22 +4,17 @@
 @using RoletaAnalise.maui.Models
 @using System.Text.RegularExpressions
 
-<div>
-    <label for="inputNumbers">Teste</label>
-    <input @bind="inputNumber" type="text" placeholder="14;8;31;22;19;16;29"/>
-    <button class="btn btn-primary" @onclick="SalvaNumeros">Adicionar</button>
-    <p>@message</p>
-    <p>@message2</p>
-    <p>@message3</p>
-    <ol>
-        @foreach (var numero in listaDeNumero)
-        {
-            <li>
-                Valor: @numero.Valor <br/>
-                Data do Input: @numero.DataDoInput.ToString("dd/MM/yyyy HH:mm:ss")
-            </li>
-        }
-    </ol>
+<div class="background">
+    <div class="container">
+        <div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+            <div class="text-center">
+                <div class="input-group mb-3">
+                    <button @onclick="SalvaNumeros" class="input-group-text" id="basic-addon1">Adiciona Sequência</button>
+                    <input @bind="inputNumber" type="text" class="form-control" placeholder="14;8;31;22;19;16;29" aria-label="Sequencia" aria-describedby="basic-addon1">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @code {

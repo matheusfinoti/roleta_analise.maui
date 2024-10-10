@@ -19,6 +19,10 @@ namespace RoletaAnalise.maui.Context
             _filePath = BuscaCaminho();
         }
 
+        /*
+        Futuramente implementar regra para salvar os arquivos separados por pastas referente 
+        as datas, separando ano, mês e dia 
+        */
         private string BuscaCaminho()
         {
             var caminhoRaizProjeto = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory));
@@ -29,6 +33,38 @@ namespace RoletaAnalise.maui.Context
         {
             File.WriteAllText(this._filePath, json);
         }
+
+        public List<Numero> LerNumeros()
+        {
+            if (!File.Exists(_filePath))
+            {
+                return new List<Numero>();
+            }
+
+            string json = File.ReadAllText(_filePath);
+
+            if (string.IsNullOrEmpty(json))
+            {
+                return new List<Numero>();
+            }
+
+            return JsonConvert.DeserializeObject<List<Numero>>(json) ?? new List<Numero>();
+        }
+
+
+        public bool VerificaCaminho(string caminho)
+        {
+            if (File.Exists(caminho))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
 
     }
 }

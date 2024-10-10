@@ -1,0 +1,7 @@
+.background {
+    background-image: url('../../Resources/Images/wallpaper_roleta.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
