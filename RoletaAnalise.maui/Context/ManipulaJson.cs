@@ -29,14 +29,23 @@ namespace RoletaAnalise.maui.Context
             return Path.Combine(caminhoRaizProjeto, "data", "numeros.json");
         }
 
-        public void AdicionaNumero(string json)
+        public void AdicionaNumero(List<Numero> listaDeNumero)
         {
-            File.WriteAllText(this._filePath, json);
+
+            if (VerificaCaminho(BuscaCaminho()))
+            {
+                List<Numero> x = LerJson();
+                x.AddRange(listaDeNumero);
+                string json = JsonConvert.SerializeObject(x, Formatting.Indented);
+                File.WriteAllText(this._filePath, "{}");
+                File.WriteAllText(this._filePath, json);
+            }
+
         }
 
-        public List<Numero> LerNumeros()
+        public List<Numero> LerJson()
         {
-            if (!File.Exists(_filePath))
+            if (!VerificaCaminho(_filePath))
             {
                 return new List<Numero>();
             }

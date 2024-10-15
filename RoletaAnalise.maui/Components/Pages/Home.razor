@@ -37,6 +37,7 @@
                 SalvaEmJson();
                 message = $"Números adicionados: {string.Join(", ", listaDeNumero)}";
                 message = AppContext.BaseDirectory;
+                listaDeNumero.Clear();
             }
             else
             {
@@ -62,9 +63,7 @@
 
     private void SalvaEmJson()
     {
-        string json = JsonConvert.SerializeObject(listaDeNumero, Formatting.Indented);
-
-        _salvaJson.AdicionaNumero(json);
+        _salvaJson.AdicionaNumero(listaDeNumero);
     }
 
     private bool ConfereString(string input)

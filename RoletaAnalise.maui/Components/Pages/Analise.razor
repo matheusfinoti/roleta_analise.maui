@@ -1,8 +1,10 @@
 ﻿@page "/analise"
+@using RoletaAnalise.maui.Context
+@using RoletaAnalise.maui.Models
 
 <h3>Analise</h3>
 
-<select class="form-select" aria-label="Default select example" style="max-width: 500px">
+<select class="form-select" @onchange="OnNumeroSelected" aria-label="Default select example" style="max-width: 500px">
     <option selected>Selecione o número</option>
     @foreach (var numero in numeros)
     {
@@ -10,8 +12,109 @@
     }
 </select>
 
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">C1</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>D1</td>
+        </tr>
+    </tbody>
+</table>
+
 @code {
     private int[] numeros = Enumerable.Range(0, 37).ToArray();
+    private int numeroSelecionado;
+    private ManipulaJson _salvaJson = new();
+    private List<Numero> listaDeNumeros = new();
+    private List<List<Numero>> sequencias = new();
 
-    
+
+    private void CarregaLista()
+    {
+        listaDeNumeros = _salvaJson.LerJson();
+    }
+
+    // private void AnalisaLista(int numeroParaVerificar)
+    // {
+    //     int i = 0;
+    //     while (i < listaDeNumeros.Count)
+    //     {
+    //         if (listaDeNumeros[i].Valor == numeroParaVerificar)
+    //         {
+    //             int[] x = [];
+    //             x[0] = listaDeNumeros[i + 1].Valor;
+    //             x[1] = listaDeNumeros[i + 2].Valor;
+    //             x[2] = listaDeNumeros[i + 3].Valor;
+
+    //             foreach (int indio in x)
+    //             {
+    //                 Numero numero = new Numero{Valor = indio};
+    //                 listaDeNumeros.Add(numero);
+    //             }
+
+    //             sequencias.Add(listaDeNumeros);
+
+    //             i += 4;
+    //         }
+    //     }
+    // }
+
+    private void AnalisaLista(int numeroParaVerificar)
+    {
+        int i = 0;
+
+        // Percorre a lista de números
+        while (i < listaDeNumeros.Count)
+        {
+            // Verifica se o número atual corresponde ao número para verificar
+            if (listaDeNumeros[i].Valor == numeroParaVerificar)
+            {
+                // Captura os próximos 3 números (se houver)
+                int[] x = new int[3];
+                if (i + 3 < listaDeNumeros.Count)
+                {
+                    x[0] = listaDeNumeros[i + 1].Valor;
+                    x[1] = listaDeNumeros[i + 2].Valor;
+                    x[2] = listaDeNumeros[i + 3].Valor;
+                }
+
+                // Adiciona os números capturados à lista
+                foreach (int indio in x)
+                {
+                    Numero numero = new Numero { Valor = indio };
+                    listaDeNumeros.Add(numero);  // Adiciona à lista de números
+                }
+
+                // Adiciona a sequência de números à lista de sequências
+                sequencias.Add(listaDeNumeros);
+
+                // Avança o índice para continuar a partir do quarto número
+                i += 4;
+            }
+            else
+            {
+                i++;
+            }
+        }
+    }
+
+    private void OnNumeroSelected(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value.ToString(), out int numero))
+        {
+            numeroSelecionado = numero;
+            AnalisaLista(numeroSelecionado); // Chama o método com o número selecionado
+        }
+        else
+        {
+            // Lida com caso de seleção inválida (ex: opção "Selecione o número")
+            numeroSelecionado = 0;
+        }
+    }
 }
