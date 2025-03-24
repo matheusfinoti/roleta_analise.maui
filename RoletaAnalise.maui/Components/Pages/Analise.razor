@@ -27,6 +27,27 @@
     </tbody>
 </table>
 
+<table>
+    <thead>
+        <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var i in sequencias)
+            {
+                <tr>
+                    @foreach (var y in i)
+                    {
+                        <td>@y.Valor</td>
+                    }
+                </tr>
+            }
+    </tbody>
+</table>
+
 @code {
     private int[] numeros = Enumerable.Range(0, 37).ToArray();
     private int numeroSelecionado;
@@ -34,8 +55,11 @@
     private List<Numero> listaDeNumeros = new();
     private List<List<Numero>> sequencias = new();
 
+    // Tabela lendo. Precisa agora computar em qual casa caiu e quantas vezes.
+    // Github nao subi
 
-    private void CarregaLista()
+
+    protected override void OnInitialized()
     {
         listaDeNumeros = _salvaJson.LerJson();
     }
@@ -75,6 +99,7 @@
             // Verifica se o número atual corresponde ao número para verificar
             if (listaDeNumeros[i].Valor == numeroParaVerificar)
             {
+
                 // Captura os próximos 3 números (se houver)
                 int[] x = new int[3];
                 if (i + 3 < listaDeNumeros.Count)
@@ -84,15 +109,16 @@
                     x[2] = listaDeNumeros[i + 3].Valor;
                 }
 
-                // Adiciona os números capturados à lista
-                foreach (int indio in x)
-                {
-                    Numero numero = new Numero { Valor = indio };
-                    listaDeNumeros.Add(numero);  // Adiciona à lista de números
-                }
+                List<Numero> y = new();
 
+                // Adiciona os números capturados à lista
+                foreach (var m in x)
+                {
+                    Numero numero = new Numero { Valor = m };
+                    y.Add(numero);  // Adiciona à lista de números
+                }
                 // Adiciona a sequência de números à lista de sequências
-                sequencias.Add(listaDeNumeros);
+                sequencias.Add(y);
 
                 // Avança o índice para continuar a partir do quarto número
                 i += 4;
