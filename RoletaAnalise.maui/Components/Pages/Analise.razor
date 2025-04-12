@@ -7,7 +7,7 @@
 <select class="form-select" @onchange="OnNumeroSelected" aria-label="Default select example" style="max-width: 500px">
     <option selected>Selecione o número</option>
     @foreach (var numero in numeros)
-    {
+        {
         <option value="@numero">@numero</option>
     }
 </select>
@@ -17,17 +17,24 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">C1</th>
+            <th scope="col">C2</th>
+            <th scope="col">C3</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>D1</td>
-        </tr>
+        @for (int i = 0; i < numeros.Length - 1; i++)
+        {
+            <tr>
+                <td>@i</td>
+                <td>@rankingOrganizado[0][i]</td>
+                <td>@rankingOrganizado[1][i]</td>
+                <td>@rankingOrganizado[2][i]</td>
+            </tr>
+        }
     </tbody>
 </table>
 
-<table>
+@* <table>
     <thead>
         <tr>
             <th>A</th>
@@ -46,7 +53,7 @@
                 </tr>
             }
     </tbody>
-</table>
+</table> *@
 
 @code {
     private int[] numeros = Enumerable.Range(0, 37).ToArray();
@@ -54,40 +61,39 @@
     private ManipulaJson _salvaJson = new();
     private List<Numero> listaDeNumeros = new();
     private List<List<Numero>> sequencias = new();
+    private List<List<int>> rankingOrganizado = new();
+
+
+
 
     // Tabela lendo. Precisa agora computar em qual casa caiu e quantas vezes.
     // Github nao subi
 
-
     protected override void OnInitialized()
     {
         listaDeNumeros = _salvaJson.LerJson();
+
+        for (int i = 0; i < 3; i++)  
+        {
+            List<int> listaInterna = new List<int>(new int[37]);
+            rankingOrganizado.Add(listaInterna);
+        }
     }
 
-    // private void AnalisaLista(int numeroParaVerificar)
-    // {
-    //     int i = 0;
-    //     while (i < listaDeNumeros.Count)
-    //     {
-    //         if (listaDeNumeros[i].Valor == numeroParaVerificar)
-    //         {
-    //             int[] x = [];
-    //             x[0] = listaDeNumeros[i + 1].Valor;
-    //             x[1] = listaDeNumeros[i + 2].Valor;
-    //             x[2] = listaDeNumeros[i + 3].Valor;
-
-    //             foreach (int indio in x)
-    //             {
-    //                 Numero numero = new Numero{Valor = indio};
-    //                 listaDeNumeros.Add(numero);
-    //             }
-
-    //             sequencias.Add(listaDeNumeros);
-
-    //             i += 4;
-    //         }
-    //     }
-    // }
+    private void OnNumeroSelected(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value.ToString(), out int numero))
+        {
+            numeroSelecionado = numero;
+            AnalisaLista(numeroSelecionado); // Chama o método com o número selecionado
+            AnalisaFrequencia(sequencias);
+        }
+        else
+        {
+            // Lida com caso de seleção inválida (ex: opção "Selecione o número")
+            numeroSelecionado = 0;
+        }
+    }
 
     private void AnalisaLista(int numeroParaVerificar)
     {
@@ -131,17 +137,29 @@
         }
     }
 
-    private void OnNumeroSelected(ChangeEventArgs e)
+    private void AnalisaFrequencia(List<List<Numero>> listaDeListas)
     {
-        if (int.TryParse(e.Value.ToString(), out int numero))
+        rankingOrganizado.Clear();
+
+        for (int i = 0; i < 3; i++)
         {
-            numeroSelecionado = numero;
-            AnalisaLista(numeroSelecionado); // Chama o método com o número selecionado
+            List<int> linha = new List<int>(new int[37]); // Cria uma lista com 37 posições iniciadas em 0
+            rankingOrganizado.Add(linha);
         }
-        else
+
+        for (int i = 0; i <= listaDeListas.Count - 1; i++)
         {
-            // Lida com caso de seleção inválida (ex: opção "Selecione o número")
-            numeroSelecionado = 0;
+            for (int ii = 0; ii <= listaDeListas[i].Count - 1; ii++)
+            {
+                var teste = listaDeListas[i][ii].Valor;
+
+                if (teste < 36)
+                {
+                    rankingOrganizado[ii][teste] = rankingOrganizado[ii][teste] + 1; // Parei nessa linha bizarra do caralho da porra. Ver se o numero está indo para o índice certo.
+                    
+                }
+
+            }
         }
     }
 }
