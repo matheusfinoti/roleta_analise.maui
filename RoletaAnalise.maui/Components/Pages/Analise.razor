@@ -12,27 +12,69 @@
     }
 </select>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">C1</th>
-            <th scope="col">C2</th>
-            <th scope="col">C3</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (int i = 0; i < numeros.Length - 1; i++)
-        {
-            <tr>
-                <td>@i</td>
-                <td>@rankingOrganizado[0][i]</td>
-                <td>@rankingOrganizado[1][i]</td>
-                <td>@rankingOrganizado[2][i]</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div style="font-size: 0.65rem" class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Ranking 1ª casa</th>
+                        <th scope="col">Qtd registros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (var i in result)
+                        {
+                        <tr>
+                            <td>@i.Indice</td>
+                            <td>@i.Valor</td>
+                        </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Ranking 2ª casa</th>
+                        <th scope="col">Qtd registros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (var i in result1)
+                        {
+                            <tr>
+                                <td>@i.Indice</td>
+                                <td>@i.Valor</td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Ranking 3ª casa</th>
+                        <th scope="col">Qtd registros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (var i in result2)
+                        {
+                        <tr>
+                            <td>@i.Indice</td>
+                            <td>@i.Valor</td>
+                        </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 @* <table>
     <thead>
@@ -61,23 +103,18 @@
     private ManipulaJson _salvaJson = new();
     private List<Numero> listaDeNumeros = new();
     private List<List<Numero>> sequencias = new();
-    private List<List<int>> rankingOrganizado = new();
+    List<int> rankingOrganizado = Enumerable.Repeat(0, 37).ToList();
+    List<int> ranking1Organizado = Enumerable.Repeat(0, 37).ToList();
+    List<int> ranking2Organizado = Enumerable.Repeat(0, 37).ToList();
+    private List<(int Valor, int Indice)> result = new();
+    private List<(int Valor, int Indice)> result1 = new();
+    private List<(int Valor, int Indice)> result2 = new();
 
 
-
-
-    // Tabela lendo. Precisa agora computar em qual casa caiu e quantas vezes.
-    // Github nao subi
 
     protected override void OnInitialized()
     {
         listaDeNumeros = _salvaJson.LerJson();
-
-        for (int i = 0; i < 3; i++)  
-        {
-            List<int> listaInterna = new List<int>(new int[37]);
-            rankingOrganizado.Add(listaInterna);
-        }
     }
 
     private void OnNumeroSelected(ChangeEventArgs e)
@@ -137,29 +174,50 @@
         }
     }
 
+
     private void AnalisaFrequencia(List<List<Numero>> listaDeListas)
     {
-        rankingOrganizado.Clear();
-
-        for (int i = 0; i < 3; i++)
-        {
-            List<int> linha = new List<int>(new int[37]); // Cria uma lista com 37 posições iniciadas em 0
-            rankingOrganizado.Add(linha);
-        }
+        rankingOrganizado = Enumerable.Repeat(0, 37).ToList();
+        ranking1Organizado = Enumerable.Repeat(0, 37).ToList();
+        ranking2Organizado = Enumerable.Repeat(0, 37).ToList();
 
         for (int i = 0; i <= listaDeListas.Count - 1; i++)
         {
-            for (int ii = 0; ii <= listaDeListas[i].Count - 1; ii++)
+            int valor = listaDeListas[i][0].Valor;
+            int valor1 = listaDeListas[i][1].Valor;
+            int valor2 = listaDeListas[i][2].Valor;
+            if (valor < numeros.Count())
             {
-                var teste = listaDeListas[i][ii].Valor;
-
-                if (teste < 36)
-                {
-                    rankingOrganizado[ii][teste] = rankingOrganizado[ii][teste] + 1; // Parei nessa linha bizarra do caralho da porra. Ver se o numero está indo para o índice certo.
-                    
-                }
-
+                rankingOrganizado[valor] = rankingOrganizado[valor] + 1;
+            }
+            if (valor1 < numeros.Count())
+            {
+                ranking1Organizado[valor1] = ranking1Organizado[valor1] + 1;
+            }
+            if (valor2 < numeros.Count())
+            {
+                ranking2Organizado[valor2] = ranking2Organizado[valor2] + 1;
             }
         }
+
+        result = rankingOrganizado
+                            .Select((valor, indice) => (Valor: valor, Indice: indice))
+                            .OrderByDescending(x => x.Valor)
+                            .ToList();
+
+        result1 = ranking1Organizado
+                            .Select((valor, indice) => (Valor: valor, Indice: indice))
+                            .OrderByDescending(x => x.Valor)
+                            .ToList();
+
+        result2 = ranking2Organizado
+                            .Select((valor, indice) => (Valor: valor, Indice: indice))
+                            .OrderByDescending(x => x.Valor)
+                            .ToList();
+
+
+
+
     }
+    // VERIFICAR SE O CÒDIGO TA COM OS RESULTADOS CORRETOS
 }
